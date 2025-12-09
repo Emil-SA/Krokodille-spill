@@ -15,36 +15,31 @@ class Numbers
     {
         Rng();
         Console.WriteLine("Skriv >,<, eller =");
-        Console.WriteLine($"{Number1}_{Number2}");
+        Console.WriteLine($"{Number1} _ {Number2}");
         var input = Console.ReadLine();
         if (Count >= 9) 
         { 
-            Console.Write("Du vant"); 
+            Console.Write("Du vant");
+            return;
         }
-        else if (input == "<" && Number1 < Number2)
+        bool correct = input switch
+        {
+            "<" => Number1 < Number2,
+            ">" => Number1 > Number2,
+            "=" => Number1 == Number2,
+            _ => false
+        };
+        if (correct) 
         {
             Count++;
             Console.WriteLine($"Det var riktig. Du har nå {Count} poeng");
-            Run();
-        }
-        else if (input == ">" && Number1 > Number2)
-        {
-            Count++;
-            Console.WriteLine($"Det var riktig. Du har nå {Count} poeng");
-            Run();
-        }
-        else if (input == "=" && Number1 == Number2)
-        {
-            Count++;
-            Console.WriteLine($"Det var riktig. Du har nå {Count} poeng");
-            Run();
         }
         else
         {
             Count = 0;
             Console.WriteLine("Det var feil. Prøv igjen");
-            Run();
         }
+        Run();
     }
 
     class Program
